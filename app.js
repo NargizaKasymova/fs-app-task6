@@ -6,14 +6,18 @@ app.use(express.json())
 const fs = require('fs')
 const { existInPatterns } = require('../fs-app/controllers/1. existSimple')
 const { existInThisLine } = require('../fs-app/controllers/2. existInLine')
+const { existWithOneException } = require('../fs-app/controllers/3. existWithException')
+
 
 const PORT = 5050
-
+                                    //app запускается через npm run dev || npm run start  || node app.js || nodemon app.js
 async function checkExisting() {
     try{
-        await existInPatterns() 
+        await existInPatterns() //1-функция работает правильно
         
-        await existInThisLine()
+        await existInThisLine()  //2-функция работает правильно
+
+        // await existWithOneException() // работает неправильно (и через 4 вложения пыталась, и через фильтр - не получилось)
         
     } catch(e){
         console.log(e)
